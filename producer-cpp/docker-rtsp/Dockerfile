@@ -21,13 +21,17 @@ RUN apt-get upgrade && \
 
 # ===== Setup Kinesis Video Streams Producer SDK (CPP) =======================================
 WORKDIR /opt/
+#COPY ./amazon-kinesis-video-streams-producer-sdk-cpp ./amazon-kinesis-video-streams-producer-sdk-cpp
 RUN git clone https://github.com/awslabs/amazon-kinesis-video-streams-producer-sdk-cpp.git
+#RUN cd /opt && mkdir -p /opt/amazon-kinesis-video-streams-producer-sdk-cpp/build
 WORKDIR /opt/amazon-kinesis-video-streams-producer-sdk-cpp/build/
+
 RUN cmake .. -DBUILD_GSTREAMER_PLUGIN=ON && \
     make
 
 
-FROM ubuntu:18.04
+#FROM ubuntu:18.04
+FROM aruilova/rorschach_base:v1
 
 RUN apt update && \
     apt install -y \
@@ -44,3 +48,7 @@ WORKDIR /opt/amazon-kinesis-video-streams-producer-sdk-cpp/build/
 ENV JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/
 ENV LD_LIBRARY_PATH=/opt/amazon-kinesis-video-streams-producer-sdk-cpp/open-source/local/lib:$LD_LIBRARY_PATH
 ENV GST_PLUGIN_PATH=/opt/amazon-kinesis-video-streams-producer-sdk-cpp/build
+
+COPY ./mediamtx.d /opt/amazon-kinesis-video-streams-producer-sdk-cpp/build/mediamtx.d
+COPY ./video_rezd.mp4 /opt/amazon-kinesis-video-streams-producer-sdk-cpp/build/
+COPY ./ffmpeg_rtsp.sh /opt/amazon-kinesis-video-streams-producer-sdk-cpp/build/

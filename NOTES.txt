@@ -1,0 +1,16 @@
+ACCESS:
+aws sts get-session-token --serial-number arn:aws:iam::888607215368:mfa/iphone --token-code <token from MFA>
+
+export AWS_ACCESS_KEY_ID="ASIA45ZI6B4EPZNFJZP5"
+export AWS_SECRET_ACCESS_KEY_ID="+80VxiaSKfXg71T4jsueXmjgCYxP+5l1whzpfCux"
+export AWS_SESSION_TOKEN="IQoJb3JpZ2luX2VjEJb//////////wEaCXVzLXdlc3QtMiJHMEUCIQDOmgE25LvGC8BrPzUUstfTqxBLdQwOVtnKFL2r5FJPYgIgdyCR/mKbgN36uJSTiCZ6P2c/MBhB3LEvxdXhRsX8mhsq+AEIr///////////ARAAGgw4ODg2MDcyMTUzNjgiDC4KtTn29YxqhjKefirMAY7FKptOfbRd/PMKKR70qt07J6a79z8SpEMdikTbYr45m9rF3+PlWZx/1dkTyQIL2O2Hv1XQLwi4/5/M3Dn+f7MxQqwxPqKoW5au1msWTHzWYTDSjMxpdXs+J22HFlRpHfUJ2zrQk0vPDMm+T57Cln1egqDn22EwF+nIjq1En0N/zwA46PjU74G1sqmx81oDTNfiYRD6UqIO1OEED3e5/7uR04H/Dczwlw6p5BAKGUHi0YfzRPiaIkB46cVkmvtu9zQ9um7PN5rxiFm9BTDGnsGpBjqYAQMat0zQuyRyqLXCsGpDrJIw51qUM5Mu32HJLD7GUx1At1jQ3zDQE6z4VCB4lE8y4N+Yg1X02i7MxR9Hrdg7ywKfthhtfdPXKkg74plqga9qzBARgaor/seydxZZ+1ZXTqFwR1/0Eji2Jjb9ZqCc0QeifKkZgkWo88YLABT4kYZaiDcsIsCmC49H8aORnnzYJPSLVu0IhBUN"
+export AWS_DEFAULT_REGION="us-west-2"
+./kvs_gstreamer_sample my-stream-test rtsp://localhost:8554/stream
+
+
+ERROR:
+
+root@d12f76424a97:/opt/amazon-kinesis-video-streams-producer-sdk-cpp/build# ./kvs_gstreamer_sample my-stream-test rtsp://localhost:8554/stream
+[INFO ] [18-10-2023 23:39:01:458.782 GMT] Using region: us-west-2
+[ERROR] [18-10-2023 23:39:01:458.890 GMT] No valid credential method was found
+[ERROR] [18-10-2023 23:39:01:459.484 GMT] Failed to initialize kinesis video with an exception: No valid credential method was found
